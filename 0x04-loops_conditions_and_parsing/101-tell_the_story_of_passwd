@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-7# This script displays the content of the file /etc/passwd with a story.
+# This script displays the content of the file /etc/passwd with a story.
 
 while IFS=: read -r user
 do
