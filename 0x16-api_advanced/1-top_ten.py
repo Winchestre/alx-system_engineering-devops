@@ -1,24 +1,19 @@
 #!/usr/bin/python3
 '''
-    this module contains the function top_ten
+    this module contains the function number_of_subscribers
 '''
 import requests
-from sys import argv
+
+headers = {"User-Agent": "MyCustomUserAgent/1.0"}
 
 
 def top_ten(subreddit):
-    '''
-        returns the top ten posts for a given subreddit
-    '''
-    user = {'User-Agent': 'Lizzie'}
-    url = requests.get('https://www.reddit.com/r/{}/hot/.json?limit=10'
-                       .format(subreddit), headers=user).json()
-    try:
-        for post in url.get('data').get('children'):
-            print(post.get('data').get('title'))
-    except Exception:
-        print(None)
-
-
-if __name__ == "__main__":
-    top_ten(argv[1])
+    """method doc"""
+    url = f'https://www.reddit.com/r/{subreddit}/hot.json?limit=10'
+    response = requests.get(url, allow_redirects=False, headers=headers)
+    if response.status_code == 200:
+        data = response.json()
+        for post in data["data"]["children"]:
+            print(post["data"]["title"])
+    else:
+        print("None")
