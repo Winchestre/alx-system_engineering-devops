@@ -18,7 +18,7 @@ def main():
     todosDone = requests.get(f'{url}{done}').json()
     doneN = len(todosDone)
     totalN = len(todosData)
-    print(f'Employee {Name} is done with tasks ({doneN}/{totalN}):')
+    print(f'Employee {Name} is done with tasks({doneN}/{totalN}):')
     for task in todosDone:
         print("\t "+task.get("title"))
 
