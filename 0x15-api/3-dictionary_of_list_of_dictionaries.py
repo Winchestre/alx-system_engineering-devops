@@ -21,19 +21,15 @@ def main():
         todosData = requests.get(f"{url}{todos}").json()
 
         data_dict[id] = [
-                {
-                    "username": userName,
-                    "task": task.get("title"),
-                    "completed": task.get("completed"),
-                    }
-                for task in todosData
-                ]
+            {
+                "username": userName,
+                "task": task.get("title"),
+                "completed": task.get("completed")
+            }
+            for task in todosData
+        ]
 
         id += 1
 
     with open("todo_all_employees.json", "w") as f:
         json.dump(data_dict, f)
-
-
-if __name__ == "__main__":
-    main()
